@@ -272,16 +272,49 @@
     }
 
     .hero {
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 10% 80px;
-    }
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  align-items: center;
+  gap: 40px;
+  padding: 120px 10% 80px;
+}
 
-    .hero-content {
-      max-width: 900px;
+.hero-content {
+  max-width: 720px;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  min-height: 620px;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,140,0,0.35) 0%, rgba(255,140,0,0.16) 35%, rgba(255,140,0,0.04) 60%, transparent 75%);
+  filter: blur(20px);
+  z-index: 1;
+}
+
+.hero-photo {
+  position: relative;
+  z-index: 2;
+  max-height: 760px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 25px rgba(255,140,0,0.18))
+    drop-shadow(0 0 55px rgba(255,140,0,0.14));
+}
     }
 
     .small-title {
@@ -488,19 +521,24 @@
   </nav>
 
   <header id="home">
-    <div class="hero">
-      <div class="hero-content">
-        <div class="small-title fade-in delay-1">THINKER · BUILDER · OBSERVER</div>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="small-title fade-in delay-1">THINKER · BUILDER · OBSERVER</div>
 
-        <h1 class="fade-in delay-2">The Inner<br>Instinct</h1>
+      <h1 class="fade-in delay-2">The Inner<br>Instinct</h1>
 
-        <p class="fade-in delay-3">
-          A personal space for ideas at the intersection of
-          <span>philosophy, economy, discipline, consciousness and transformation.</span>
-        </p>
-      </div>
+      <p class="fade-in delay-3">
+        A personal space for ideas at the intersection of
+        <span>philosophy, economy, discipline, consciousness and transformation.</span>
+      </p>
     </div>
-  </header>
+
+    <div class="hero-visual fade-in delay-3">
+      <div class="hero-glow"></div>
+      <img src="rafal.png" alt="Rafal portrait" class="hero-photo" />
+    </div>
+  </div>
+</header>
 
   <section id="economy">
     <h2 class="section-title">Economy<span>.</span></h2>
