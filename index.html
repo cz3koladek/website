@@ -15,7 +15,7 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #050712;
+      background: #050505;
       color: #ffffff;
       line-height: 1.6;
     }
@@ -23,10 +23,10 @@
     header {
       min-height: 100vh;
       background:
-        linear-gradient(90deg, rgba(0,0,0,0.95), rgba(5,7,18,0.78), rgba(0,20,60,0.45)),
-        radial-gradient(circle at 80% 40%, rgba(0,140,255,0.35), transparent 35%),
-        radial-gradient(circle at 60% 70%, rgba(130,70,255,0.25), transparent 35%),
-        #050712;
+        linear-gradient(90deg, rgba(0,0,0,0.97), rgba(10,6,2,0.9), rgba(40,18,0,0.62)),
+        radial-gradient(circle at 82% 45%, rgba(255,140,0,0.30), transparent 35%),
+        radial-gradient(circle at 58% 75%, rgba(255,85,0,0.20), transparent 35%),
+        #050505;
       position: relative;
       overflow: hidden;
     }
@@ -36,10 +36,25 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(255,140,0,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,140,0,0.045) 1px, transparent 1px);
       background-size: 80px 80px;
-      opacity: 0.25;
+      opacity: 0.35;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: 15%;
+      width: 520px;
+      height: 520px;
+      border: 1px solid rgba(255,140,0,0.18);
+      border-radius: 50%;
+      box-shadow:
+        0 0 60px rgba(255,140,0,0.18),
+        inset 0 0 60px rgba(255,140,0,0.08);
+      animation: slowPulse 6s ease-in-out infinite;
     }
 
     nav {
@@ -51,20 +66,20 @@
       justify-content: space-between;
       align-items: center;
       padding: 26px 8%;
-      background: rgba(5, 7, 18, 0.7);
+      background: rgba(5, 5, 5, 0.76);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,140,0,0.16);
     }
 
     .logo {
       font-size: 22px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 4px;
       color: #ffffff;
     }
 
     .logo span {
-      color: #2aa8ff;
+      color: #ff8a00;
     }
 
     .nav-links {
@@ -77,13 +92,14 @@
       color: #ffffff;
       text-decoration: none;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 4px;
       transition: 0.3s;
     }
 
     .nav-links a:hover {
-      color: #2aa8ff;
+      color: #ff8a00;
+      text-shadow: 0 0 15px rgba(255,140,0,0.8);
     }
 
     .hero {
@@ -96,43 +112,90 @@
     }
 
     .hero-content {
-      max-width: 850px;
+      max-width: 900px;
     }
 
     .small-title {
-      color: #2aa8ff;
+      color: #ff8a00;
       font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 7px;
+      font-weight: 900;
+      letter-spacing: 8px;
       margin-bottom: 30px;
+      text-shadow: 0 0 18px rgba(255,140,0,0.55);
     }
 
     h1 {
-      font-size: clamp(52px, 8vw, 110px);
+      font-size: clamp(52px, 8vw, 112px);
       line-height: 0.95;
-      font-weight: 900;
+      font-weight: 950;
       text-transform: uppercase;
       margin-bottom: 35px;
+      letter-spacing: 2px;
     }
 
     .hero p {
-      max-width: 680px;
+      max-width: 720px;
       font-size: 26px;
-      color: #e8e8e8;
+      color: #f1f1f1;
     }
 
     .hero p span {
-      color: #2aa8ff;
+      color: #ff8a00;
+      text-shadow: 0 0 12px rgba(255,140,0,0.45);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(38px);
+      animation: fadeInUp 1.45s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.25s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.95s;
+    }
+
+    .delay-3 {
+      animation-delay: 1.65s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(38px);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slowPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: scale(1.08);
+        opacity: 0.9;
+      }
     }
 
     section {
       padding: 120px 10%;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      background: #070916;
+      border-top: 1px solid rgba(255,140,0,0.13);
+      background: #080808;
     }
 
     section:nth-child(even) {
-      background: #050712;
+      background: #050505;
     }
 
     .section-title {
@@ -143,7 +206,7 @@
     }
 
     .section-title span {
-      color: #2aa8ff;
+      color: #ff8a00;
     }
 
     .section-text {
@@ -156,11 +219,12 @@
     .quote {
       margin-top: 45px;
       padding-left: 24px;
-      border-left: 5px solid #2aa8ff;
+      border-left: 5px solid #ff8a00;
       font-size: 28px;
       font-style: italic;
       color: #ffffff;
       max-width: 900px;
+      text-shadow: 0 0 12px rgba(255,140,0,0.22);
     }
 
     .cards {
@@ -171,14 +235,21 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,140,0,0.045);
+      border: 1px solid rgba(255,140,0,0.18);
       padding: 28px;
       border-radius: 16px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,140,0,0.55);
+      box-shadow: 0 0 35px rgba(255,140,0,0.10);
     }
 
     .card h3 {
-      color: #2aa8ff;
+      color: #ff8a00;
       margin-bottom: 12px;
       font-size: 22px;
     }
@@ -190,10 +261,11 @@
 
     footer {
       padding: 40px 10%;
-      background: #03040c;
+      background: #030303;
       color: #777;
       text-align: center;
       font-size: 14px;
+      border-top: 1px solid rgba(255,140,0,0.14);
     }
 
     @media (max-width: 800px) {
@@ -249,11 +321,11 @@
   <header id="home">
     <div class="hero">
       <div class="hero-content">
-        <div class="small-title">THINKER · BUILDER · OBSERVER</div>
+        <div class="small-title fade-in delay-1">THINKER · BUILDER · OBSERVER</div>
 
-        <h1>The Inner<br>Instinct</h1>
+        <h1 class="fade-in delay-2">The Inner<br>Instinct</h1>
 
-        <p>
+        <p class="fade-in delay-3">
           A personal space for ideas at the intersection of
           <span>philosophy, economy, discipline, consciousness and transformation.</span>
         </p>
