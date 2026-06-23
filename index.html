@@ -1,106 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Inner Instinct</title>
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b12;
-      color: #f5f5f5;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050712;
+      color: #ffffff;
       line-height: 1.6;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 24px;
+    header {
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.95), rgba(5,7,18,0.78), rgba(0,20,60,0.45)),
+        radial-gradient(circle at 80% 40%, rgba(0,140,255,0.35), transparent 35%),
+        radial-gradient(circle at 60% 70%, rgba(130,70,255,0.25), transparent 35%),
+        #050712;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0.25;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 26px 8%;
+      background: rgba(5, 7, 18, 0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: #ffffff;
+    }
+
+    .logo span {
+      color: #2aa8ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #2aa8ff;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 10% 80px;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .small-title {
+      color: #2aa8ff;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 7px;
+      margin-bottom: 30px;
     }
 
     h1 {
-      font-size: 56px;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
+      font-size: clamp(52px, 8vw, 110px);
+      line-height: 0.95;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 35px;
     }
 
-    .subtitle {
-      font-size: 22px;
-      color: #b8b8ff;
-      margin-bottom: 50px;
+    .hero p {
+      max-width: 680px;
+      font-size: 26px;
+      color: #e8e8e8;
+    }
+
+    .hero p span {
+      color: #2aa8ff;
     }
 
     section {
-      margin-bottom: 50px;
+      padding: 120px 10%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: #070916;
     }
 
-    h2 {
-      color: #d6b4ff;
-      font-size: 28px;
-      margin-bottom: 15px;
+    section:nth-child(even) {
+      background: #050712;
     }
 
-    p {
-      font-size: 18px;
-      color: #dddddd;
+    .section-title {
+      font-size: 48px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title span {
+      color: #2aa8ff;
+    }
+
+    .section-text {
+      max-width: 900px;
+      font-size: 20px;
+      color: #d8d8d8;
+      margin-bottom: 28px;
     }
 
     .quote {
-      font-size: 26px;
+      margin-top: 45px;
+      padding-left: 24px;
+      border-left: 5px solid #2aa8ff;
+      font-size: 28px;
       font-style: italic;
       color: #ffffff;
-      border-left: 4px solid #8a5cff;
-      padding-left: 20px;
-      margin: 40px 0;
+      max-width: 900px;
     }
 
-    .footer {
-      margin-top: 80px;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 45px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.09);
+      padding: 28px;
+      border-radius: 16px;
+    }
+
+    .card h3 {
+      color: #2aa8ff;
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+
+    .card p {
+      color: #cccccc;
+      font-size: 17px;
+    }
+
+    footer {
+      padding: 40px 10%;
+      background: #03040c;
+      color: #777;
+      text-align: center;
       font-size: 14px;
-      color: #888;
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        flex-direction: column;
+        gap: 18px;
+        padding: 18px 5%;
+      }
+
+      .nav-links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+
+      .hero {
+        padding: 150px 7% 70px;
+      }
+
+      section {
+        padding: 90px 7%;
+      }
+
+      .hero p {
+        font-size: 21px;
+      }
+
+      .section-title {
+        font-size: 36px;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>The Inner Instinct</h1>
-    <div class="subtitle">Philosophy. Discipline. Consciousness. Becoming.</div>
 
-    <section>
-      <h2>About</h2>
-      <p>
-        This is a personal space dedicated to thoughts, discipline, inner growth
-        and the search for meaning. A place where instinct meets awareness,
-        and where philosophy becomes something practical.
-      </p>
-    </section>
+<body>
+
+  <nav>
+    <div class="logo">INNER<span>INSTINCT</span></div>
+
+    <ul class="nav-links">
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#economy">ECONOMY</a></li>
+      <li><a href="#philosophy">PHILOSOPHY</a></li>
+      <li><a href="#look">LOOK AT ME NOW</a></li>
+    </ul>
+  </nav>
+
+  <header id="home">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="small-title">THINKER · BUILDER · OBSERVER</div>
+
+        <h1>The Inner<br>Instinct</h1>
+
+        <p>
+          A personal space for ideas at the intersection of
+          <span>philosophy, economy, discipline, consciousness and transformation.</span>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section id="economy">
+    <h2 class="section-title">Economy<span>.</span></h2>
+
+    <p class="section-text">
+      Economy is more than money. It is the invisible structure behind choices,
+      pressure, freedom, survival and power. To understand economy is to understand
+      how the world moves.
+    </p>
+
+    <p class="section-text">
+      Here I will explore markets, debt, inflation, crypto, work, ownership,
+      value and the psychological side of money.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Money</h3>
+        <p>What money really represents: energy, time, trust and control.</p>
+      </div>
+
+      <div class="card">
+        <h3>Markets</h3>
+        <p>How fear, greed and narratives shape economic reality.</p>
+      </div>
+
+      <div class="card">
+        <h3>Crypto</h3>
+        <p>Digital value, decentralisation, tokenisation and the future of finance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="philosophy">
+    <h2 class="section-title">Philosophy<span>.</span></h2>
+
+    <p class="section-text">
+      Philosophy is not just theory. It is a weapon for thinking clearly.
+      It is the ability to question what others accept automatically.
+    </p>
+
+    <p class="section-text">
+      The Inner Instinct is about listening to what is deeper than noise:
+      intuition, discipline, self-control and the quiet force that pushes a person
+      to become more.
+    </p>
 
     <div class="quote">
-      Trust the process. Follow the instinct.
+      “Trust the process. Follow the instinct.”
     </div>
+  </section>
 
-    <section>
-      <h2>Philosophy</h2>
-      <p>
-        The Inner Instinct is about listening to what is deeper than noise:
-        intuition, focus, self-control and the quiet force that pushes a person
-        to become more.
-      </p>
-    </section>
+  <section id="look">
+    <h2 class="section-title">Look At Me Now<span>.</span></h2>
 
-    <section>
-      <h2>Purpose</h2>
-      <p>
-        This website will become a collection of ideas, reflections, writings
-        and personal principles — built around growth, consciousness,
-        responsibility and transformation.
-      </p>
-    </section>
+    <p class="section-text">
+      This section is about transformation. Not pretending to be perfect.
+      Not showing off. But showing progress — from confusion to clarity,
+      from survival to direction, from instinct to conscious action.
+    </p>
 
-    <div class="footer">
-      © The Inner Instinct
+    <p class="section-text">
+      This is where I will collect personal reflections, lessons, milestones,
+      failures, discipline, growth and the story of becoming someone stronger.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Discipline</h3>
+        <p>Doing what needs to be done, even when motivation disappears.</p>
+      </div>
+
+      <div class="card">
+        <h3>Growth</h3>
+        <p>Turning pressure, mistakes and struggle into personal evolution.</p>
+      </div>
+
+      <div class="card">
+        <h3>Identity</h3>
+        <p>Becoming the person you were supposed to become.</p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <footer>
+    © The Inner Instinct — built from instinct, discipline and thought.
+  </footer>
+
 </body>
 </html>
