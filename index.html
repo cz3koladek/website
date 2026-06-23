@@ -70,18 +70,187 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,140,0,0.16);
     }
+.logo {
+  position: relative;
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+  animation: logoBaseGlitch 4.8s infinite steps(1, end);
+  text-shadow:
+    0 0 8px rgba(255, 138, 0, 0.18),
+    0 0 20px rgba(255, 138, 0, 0.08);
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 4px;
-      color: #ffffff;
-    }
+.logo span {
+  color: #ff8a00;
+}
 
-    .logo span {
-      color: #ff8a00;
-    }
+.logo::before,
+.logo::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: #f2f2f2;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+}
 
+.logo::before {
+  text-shadow:
+    -4px 0 #00f6ff,
+    3px 0 #ff003c;
+  animation: glitchSliceA 4.8s infinite steps(1, end);
+}
+
+.logo::after {
+  text-shadow:
+    4px 0 #00f6ff,
+    -3px 0 #ff003c,
+    0 0 12px rgba(255,255,255,0.25);
+  animation: glitchSliceB 4.8s infinite steps(1, end);
+}
+@keyframes logoBaseGlitch {
+  0%, 74%, 100% {
+    transform: translate(0);
+    filter: none;
+  }
+
+  75% {
+    transform: translate(1px, 0);
+    filter: contrast(1.4);
+  }
+
+  76% {
+    transform: translate(-2px, 1px);
+    filter: contrast(1.8) saturate(1.4);
+  }
+
+  77% {
+    transform: translate(2px, -1px);
+    filter: contrast(1.5);
+  }
+
+  78% {
+    transform: translate(-1px, 0);
+    filter: contrast(1.6);
+  }
+
+  79% {
+    transform: translate(3px, 1px);
+    filter: contrast(2) saturate(1.7);
+  }
+
+  80% {
+    transform: translate(0);
+    filter: none;
+  }
+}
+
+@keyframes glitchSliceA {
+  0%, 73%, 100% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+
+  74% {
+    opacity: 1;
+    transform: translate(-7px, 0);
+    clip-path: inset(0 0 78% 0);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translate(6px, -1px);
+    clip-path: inset(18% 0 58% 0);
+  }
+
+  76% {
+    opacity: 1;
+    transform: translate(-5px, 1px);
+    clip-path: inset(42% 0 38% 0);
+  }
+
+  77% {
+    opacity: 1;
+    transform: translate(7px, -1px);
+    clip-path: inset(68% 0 10% 0);
+  }
+
+  78% {
+    opacity: 1;
+    transform: translate(-4px, 2px);
+    clip-path: inset(8% 0 74% 0);
+  }
+
+  79% {
+    opacity: 1;
+    transform: translate(5px, 0);
+    clip-path: inset(52% 0 24% 0);
+  }
+
+  80% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes glitchSliceB {
+  0%, 73%, 100% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+
+  74% {
+    opacity: 0.9;
+    transform: translate(5px, 0);
+    clip-path: inset(75% 0 6% 0);
+  }
+
+  75% {
+    opacity: 0.9;
+    transform: translate(-6px, 1px);
+    clip-path: inset(8% 0 72% 0);
+  }
+
+  76% {
+    opacity: 1;
+    transform: translate(6px, -2px);
+    clip-path: inset(28% 0 52% 0);
+  }
+
+  77% {
+    opacity: 1;
+    transform: translate(-5px, 1px);
+    clip-path: inset(58% 0 20% 0);
+  }
+
+  78% {
+    opacity: 0.9;
+    transform: translate(4px, -1px);
+    clip-path: inset(82% 0 2% 0);
+  }
+
+  79% {
+    opacity: 1;
+    transform: translate(-7px, 0);
+    clip-path: inset(36% 0 42% 0);
+  }
+
+  80% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
     .nav-links {
       display: flex;
       gap: 34px;
@@ -308,7 +477,7 @@
 <body>
 
   <nav>
-    <div class="logo">INNER<span>INSTINCT</span></div>
+    <div class="logo" data-text="INNERINSTINCT">INNER<span>INSTINCT</span></div>
 
     <ul class="nav-links">
       <li><a href="#home">HOME</a></li>
