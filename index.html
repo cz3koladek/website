@@ -588,7 +588,7 @@
 
     <ul class="nav-links">
       <li><a href="#home">HOME</a></li>
-      <li><a href="#economy">ECONOMY</a></li>
+      <li><a href="#bitcoineconomy">BITCOIN</a></li>
       <li><a href="#philosophy">PHILOSOPHY</a></li>
       <li><a href="#look">LOOK AT ME NOW</a></li>
     </ul>
@@ -830,8 +830,15 @@
         portalGroup.rotation.y += (mouseX - portalGroup.rotation.y) * 0.035;
         portalGroup.rotation.x += (-mouseY - portalGroup.rotation.x) * 0.035;
 
-        const pulse = Math.sin(Date.now() * 0.002) * 0.06;
-        portalGroup.scale.set(1 + pulse, 1 + pulse, 1 + pulse);
+        const bpm = 60;
+const periodMs = 60000 / bpm;
+const phase = (Date.now() % periodMs) / periodMs;
+const bump = (center, width, amplitude) => {
+  const d = phase - center;
+  return amplitude * Math.exp(-(d * d) / (2 * width * width));
+};
+const pulse = bump(0.05, 0.035, 0.09) + bump(0.22, 0.045, 0.04);
+portalGroup.scale.set(1 + pulse, 1 + pulse, 1 + pulse);
 
         renderer.render(scene, camera);
       }
